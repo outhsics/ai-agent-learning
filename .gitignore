@@ -70,3 +70,4 @@ three-tier-arch/data/
 # Notes (ignore large files)
 notes/*.tmp
 notes/*.bak
+/dify/
