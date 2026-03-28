@@ -9,7 +9,7 @@ echo "  🏗️  三层架构演示 - 快速启动"
 echo "============================================================"
 echo ""
 
-DEMO_DIR="$HOME/.claude/three-tier-demo"
+DEMO_DIR="$HOME/ai-agent-learning/three-tier-arch"
 cd "$DEMO_DIR"
 
 # 检查 Docker 是否运行
@@ -21,7 +21,7 @@ fi
 echo "✅ Docker 已运行"
 
 # 创建数据目录
-mkdir -p data/{minio,postgres,etcd,milvus-minio,milvus}
+mkdir -p data/{minio,postgres}
 echo "✅ 数据目录已创建"
 
 # 停止旧容器
@@ -60,11 +60,11 @@ else
     echo "⏳ PostgreSQL: 启动中..."
 fi
 
-# Milvus
-if docker exec demo-milvus curl -s http://localhost:19530 > /dev/null 2>&1; then
-    echo "✅ Milvus: localhost:19530"
+# Milvus（使用现有实例）
+if docker exec milvus-standalone curl -s http://localhost:19530 > /dev/null 2>&1; then
+    echo "✅ Milvus: localhost:19530 (现有实例)"
 else
-    echo "⏳ Milvus: 启动中..."
+    echo "⚠️  Milvus: 未运行，请先启动 Milvus"
 fi
 
 # API 服务
