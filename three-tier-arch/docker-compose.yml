@@ -53,7 +53,7 @@ services:
   demo-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.simple
     container_name: demo-app
     environment:
       # MinIO 配置
@@ -68,10 +68,6 @@ services:
       POSTGRES_USER: demo_user
       POSTGRES_PASSWORD: demo_password
       POSTGRES_DB: chat_db
-
-      # Milvus 配置（连接到宿主机的现有 Milvus）
-      MILVUS_HOST: host.docker.internal
-      MILVUS_PORT: 19530
     ports:
       - "8000:8000"
     depends_on:
